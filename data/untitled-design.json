@@ -1,0 +1,932 @@
+{
+  "designId": "d_1767946485895",
+  "name": "Untitled Design",
+  "canvas": {
+    "width": 448
+  },
+  "activePage": 4,
+  "pages": [
+    {
+      "id": "page_1767946485895_15peq1ay7",
+      "elements": [
+        {
+          "id": "el_1767946550370_3s8te8x7m",
+          "type": "image",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "size": {
+            "width": 225,
+            "height": 91
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767946570103_95grwt7al",
+          "type": "text",
+          "position": {
+            "x": 148,
+            "y": 124
+          },
+          "size": {
+            "width": 146,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Namaste",
+          "fontSize": 38,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#ff7300",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767948960007_zohxqm753",
+          "type": "text",
+          "position": {
+            "x": 79,
+            "y": 171
+          },
+          "size": {
+            "width": 301,
+            "height": 43
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Saurabh has a letter for you",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767949021966_86ulbmopq",
+          "type": "button",
+          "position": {
+            "x": 109,
+            "y": 495
+          },
+          "size": {
+            "width": 221,
+            "height": 49
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "text": "Read your letter",
+          "backgroundColor": "#f97316",
+          "textColor": "#ffffff",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "action": {
+            "type": "next-page",
+            "delay": 1
+          },
+          "hoverEffect": "scale"
+        },
+        {
+          "id": "el_1767949264763_25r4oomij",
+          "type": "image",
+          "position": {
+            "x": 120,
+            "y": 256
+          },
+          "size": {
+            "width": 200,
+            "height": 200
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767949263135-2n2wqyoy7.jpg",
+          "objectFit": "cover"
+        }
+      ],
+      "backgroundColor": "#a6e3f2",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center",
+      "height": 613,
+      "name": "Page 1",
+      "transition": "fade"
+    },
+    {
+      "id": "page_1767949304881_6didx4xjm",
+      "elements": [
+        {
+          "id": "el_1767949379955_556domf4j",
+          "type": "shape",
+          "position": {
+            "x": 104,
+            "y": 83
+          },
+          "size": {
+            "width": 240,
+            "height": 257
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "shapeType": "rectangle",
+          "fill": "#fff",
+          "stroke": "transparent",
+          "strokeWidth": 0,
+          "borderRadius": 8
+        },
+        {
+          "id": "el_1767949411341_pp74qjvcl",
+          "type": "text",
+          "position": {
+            "x": 119,
+            "y": 99
+          },
+          "size": {
+            "width": 210,
+            "height": 218
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "We have made a report to celebrate your progress in 2025.  Do share this report with your friends and family to inspire them and make mission Har Ghar Yoga a reality.",
+          "fontSize": 18,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767949476431_gf0sakrja",
+          "type": "button",
+          "position": {
+            "x": 145,
+            "y": 508
+          },
+          "size": {
+            "width": 160,
+            "height": 48
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "text": "Click me",
+          "backgroundColor": "#f97316",
+          "textColor": "#ffffff",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "action": {
+            "type": "next-page",
+            "delay": 1
+          },
+          "hoverEffect": "scale"
+        },
+        {
+          "id": "el_1767949512729_ov2f8gfyj",
+          "type": "image",
+          "position": {
+            "x": 4,
+            "y": 315
+          },
+          "size": {
+            "width": 228,
+            "height": 123
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        }
+      ],
+      "backgroundColor": "#a6e3f2",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center",
+      "height": 600,
+      "name": "Page 2",
+      "transition": "fade"
+    },
+    {
+      "id": "page_1767949536471_bz1g6dttr",
+      "elements": [
+        {
+          "id": "el_1767949575849_wtge1ueiv",
+          "type": "image",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 141,
+            "height": 78
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767949592193_r085h26h8",
+          "type": "image",
+          "position": {
+            "x": 360,
+            "y": 0
+          },
+          "size": {
+            "width": 84,
+            "height": 80
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767949638452_ptb2kr970",
+          "type": "slot-machine",
+          "position": {
+            "x": 86,
+            "y": 198
+          },
+          "size": {
+            "width": 268,
+            "height": 97
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "items": [
+            "😭",
+            "7️⃣",
+            "💎",
+            "⭐",
+            "🍀",
+            "🎯"
+          ],
+          "backgroundColor": "#ffffff",
+          "textColor": "#ffffff",
+          "fontSize": 48,
+          "fontFamily": "Inter",
+          "borderRadius": 16,
+          "spinDuration": 2
+        },
+        {
+          "id": "el_1767949674796_prwohzqvk",
+          "type": "text",
+          "position": {
+            "x": 179,
+            "y": 85
+          },
+          "size": {
+            "width": 200,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "You did",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767949697835_ribgj1il5",
+          "type": "text",
+          "position": {
+            "x": 154,
+            "y": 137
+          },
+          "size": {
+            "width": 200,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Days of Yoga",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767949719649_d3x390hx7",
+          "type": "text",
+          "position": {
+            "x": 181,
+            "y": 319
+          },
+          "size": {
+            "width": 200,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "This Year",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767949776994_mwthib24d",
+          "type": "button",
+          "position": {
+            "x": 147,
+            "y": 489
+          },
+          "size": {
+            "width": 160,
+            "height": 48
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "text": "Click me",
+          "backgroundColor": "#f97316",
+          "textColor": "#ffffff",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "action": {
+            "type": "trigger-slot-machine",
+            "onSuccessAction": {
+              "type": "next-page"
+            }
+          },
+          "hoverEffect": "scale"
+        }
+      ],
+      "backgroundColor": "#a6e3f2",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center",
+      "height": 600,
+      "name": "Page 3",
+      "transition": "fade"
+    },
+    {
+      "id": "page_1767949801213_at8kp7w91",
+      "elements": [
+        {
+          "id": "el_1767949834920_snkp410my",
+          "type": "image",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 141,
+            "height": 78
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767949839952_drirp4jt9",
+          "type": "image",
+          "position": {
+            "x": 367,
+            "y": 5
+          },
+          "size": {
+            "width": 77,
+            "height": 71
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767949995136_eimkp60bv",
+          "type": "text",
+          "position": {
+            "x": 33,
+            "y": 113
+          },
+          "size": {
+            "width": 401,
+            "height": 38
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Your most attended class is",
+          "fontSize": 33,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950047910_vdag3321b",
+          "type": "text",
+          "position": {
+            "x": 168,
+            "y": 159
+          },
+          "size": {
+            "width": 115,
+            "height": 31
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Class is",
+          "fontSize": 31,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950090704_73s2sepcm",
+          "type": "shape",
+          "position": {
+            "x": 97,
+            "y": 271
+          },
+          "size": {
+            "width": 246,
+            "height": 179
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "shapeType": "rectangle",
+          "fill": "#fff",
+          "stroke": "transparent",
+          "strokeWidth": 0,
+          "borderRadius": 8
+        },
+        {
+          "id": "el_1767950124522_ybpyvy54l",
+          "type": "text",
+          "position": {
+            "x": 155,
+            "y": 285
+          },
+          "size": {
+            "width": 129,
+            "height": 43
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Lower body",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950161742_0cubbz1um",
+          "type": "text",
+          "position": {
+            "x": 187,
+            "y": 334
+          },
+          "size": {
+            "width": 63,
+            "height": 42
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "24",
+          "fontSize": 62,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950187111_89uyy7sjp",
+          "type": "text",
+          "position": {
+            "x": 125,
+            "y": 393
+          },
+          "size": {
+            "width": 200,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Sessions Attended",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950213447_mlugjhd7p",
+          "type": "button",
+          "position": {
+            "x": 150,
+            "y": 513
+          },
+          "size": {
+            "width": 160,
+            "height": 48
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "text": "Click me",
+          "backgroundColor": "#f97316",
+          "textColor": "#ffffff",
+          "borderRadius": 8,
+          "fontSize": 16,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "borderColor": "transparent",
+          "borderWidth": 0,
+          "action": {
+            "type": "next-page"
+          },
+          "hoverEffect": "scale"
+        }
+      ],
+      "backgroundColor": "#a6e3f2",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center",
+      "height": 600,
+      "name": "Page 4",
+      "transition": "fade"
+    },
+    {
+      "id": "page_1767950258523_6qdwufj40",
+      "elements": [
+        {
+          "id": "el_1767950393662_1hrfhmul0",
+          "type": "image",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 141,
+            "height": 78
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767950397742_x9vlj2cxm",
+          "type": "image",
+          "position": {
+            "x": 362,
+            "y": 3
+          },
+          "size": {
+            "width": 79,
+            "height": 71
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "fadeIn",
+          "animationDelay": 0,
+          "src": "https://hidwrzetlqkjcrmcfuda.supabase.co/storage/v1/object/public/poster-images/uploads/1767946548457-r1jov0hl8.png",
+          "objectFit": "cover"
+        },
+        {
+          "id": "el_1767950424292_2bc2ltmdj",
+          "type": "text",
+          "position": {
+            "x": 160,
+            "y": 62
+          },
+          "size": {
+            "width": 139,
+            "height": 41
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Well done",
+          "fontSize": 32,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950455131_wj2vmeqv4",
+          "type": "text",
+          "position": {
+            "x": 160,
+            "y": 100
+          },
+          "size": {
+            "width": 200,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Samarth Ji",
+          "fontSize": 31,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950518819_fo2ufi69h",
+          "type": "shape",
+          "position": {
+            "x": 78,
+            "y": 152
+          },
+          "size": {
+            "width": 314,
+            "height": 46
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "shapeType": "rectangle",
+          "fill": "#f97316",
+          "stroke": "transparent",
+          "strokeWidth": 0,
+          "borderRadius": 8
+        },
+        {
+          "id": "el_1767950541221_kyfiynths",
+          "type": "text",
+          "position": {
+            "x": 108,
+            "y": 154
+          },
+          "size": {
+            "width": 289,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "YOGA REPORT CARD",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#FFF",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950582438_f1dd1tkpi",
+          "type": "shape",
+          "position": {
+            "x": 78,
+            "y": 236
+          },
+          "size": {
+            "width": 307,
+            "height": 240
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "shapeType": "rectangle",
+          "fill": "#ffffff",
+          "stroke": "transparent",
+          "strokeWidth": 0,
+          "borderRadius": 8
+        },
+        {
+          "id": "el_1767950608961_rebyzxi2k",
+          "type": "text",
+          "position": {
+            "x": 116,
+            "y": 241
+          },
+          "size": {
+            "width": 230,
+            "height": 45
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Here's what you achieved this year",
+          "fontSize": 15,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950661648_njk6bcdmj",
+          "type": "text",
+          "position": {
+            "x": 130,
+            "y": 287
+          },
+          "size": {
+            "width": 200,
+            "height": 40
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Add your text here",
+          "fontSize": 24,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950676021_skg18sk3o",
+          "type": "text",
+          "position": {
+            "x": 94,
+            "y": 333
+          },
+          "size": {
+            "width": 286,
+            "height": 44
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Lower Body: Most Attended Class",
+          "fontSize": 19,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        },
+        {
+          "id": "el_1767950728597_ck71fffj7",
+          "type": "text",
+          "position": {
+            "x": 109,
+            "y": 391
+          },
+          "size": {
+            "width": 286,
+            "height": 44
+          },
+          "rotation": 0,
+          "opacity": 1,
+          "locked": false,
+          "animation": "none",
+          "animationDelay": 0,
+          "content": "Tuesday: Most Attended Day",
+          "fontSize": 19,
+          "fontFamily": "Inter",
+          "fontWeight": "600",
+          "color": "#1a1a2e",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "letterSpacing": 0
+        }
+      ],
+      "backgroundColor": "#a6e3f2",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center",
+      "height": 600,
+      "name": "Page 5",
+      "transition": "fade"
+    }
+  ],
+  "createdAt": "2026-01-09T08:14:45.895Z",
+  "updatedAt": "2026-01-09T10:56:20.230Z"
+}
