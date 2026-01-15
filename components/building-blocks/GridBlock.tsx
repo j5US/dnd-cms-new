@@ -11,6 +11,7 @@ interface GridBlockProps {
     children?: ReactNode;
     className?: string;
     nodeId?: string;
+    isEditor?: boolean;
 }
 
 export function GridBlock({
@@ -20,6 +21,7 @@ export function GridBlock({
     children,
     className,
     nodeId,
+    isEditor = true,
 }: GridBlockProps) {
     const { setNodeRef, isOver } = useDroppable({
         id: nodeId || 'grid-block',
@@ -38,16 +40,19 @@ export function GridBlock({
             ref={setNodeRef}
             className={cn(
                 'w-full grid *:w-full',
-                'p-4 border border-dashed border-gray-300 rounded-md bg-gray-50/50',
-                isOver && 'ring-2 ring-green-400 bg-green-50/50',
+                // Only show editor-specific styling when in editor mode
+                isEditor && 'p-4 border border-dashed border-gray-300 rounded-md bg-gray-50/50',
+                isEditor && isOver && 'ring-2 ring-green-400 bg-green-50/50',
                 className
             )}
             style={heightStyle}
         >
             {children || (
-                <div className="col-span-full text-sm text-gray-400 italic">
-                    Drop content components here
-                </div>
+                isEditor && (
+                    <div className="col-span-full text-sm text-gray-400 italic">
+                        Drop content components here
+                    </div>
+                )
             )}
         </div>
     );

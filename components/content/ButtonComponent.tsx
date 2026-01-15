@@ -2,6 +2,7 @@
 
 import { Button as ShadcnButton } from '@/components/ui/button';
 import { createSizeStyle } from '@/lib/size-utils';
+import { createSpacingStyle } from '@/lib/spacing-utils';
 
 interface ButtonComponentProps {
     text?: string;
@@ -9,6 +10,10 @@ interface ButtonComponentProps {
     size?: 'default' | 'sm' | 'lg' | 'icon';
     width?: string | number;
     height?: string | number;
+    marginTop?: number;
+    marginBottom?: number;
+    paddingTop?: number;
+    paddingBottom?: number;
 }
 
 export function ButtonComponent({
@@ -17,17 +22,24 @@ export function ButtonComponent({
     size = 'default',
     width = 'auto',
     height = 'auto',
+    marginTop = 0,
+    marginBottom = 0,
+    paddingTop = 0,
+    paddingBottom = 0,
 }: ButtonComponentProps) {
     const sizeStyle = createSizeStyle(width, height);
+    const spacingStyle = createSpacingStyle(marginTop, marginBottom, paddingTop, paddingBottom);
 
     return (
-        <ShadcnButton
-            className="break-all whitespace-normal"
-            variant={variant}
-            size={size}
-            style={sizeStyle}
-        >
-            {text}
-        </ShadcnButton>
+        <div style={spacingStyle}>
+            <ShadcnButton
+                className="break-all whitespace-normal"
+                variant={variant}
+                size={size}
+                style={sizeStyle}
+            >
+                {text}
+            </ShadcnButton>
+        </div>
     );
 }

@@ -4,12 +4,9 @@ import { useCampaign } from '@/lib/store';
 import { Toolbox } from './Toolbox';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { exportCampaign, importCampaign } from '@/lib/export-utils';
-import { useRef } from 'react';
 
 export function PageSidebar() {
     const { state, dispatch } = useCampaign();
-    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleAddPage = () => {
         dispatch({ type: 'ADD_PAGE' });
@@ -23,41 +20,6 @@ export function PageSidebar() {
         e.stopPropagation();
         if (state.campaign.pages.length > 1) {
             dispatch({ type: 'DELETE_PAGE', pageId });
-        }
-    };
-
-    const handleExport = () => {
-        try {
-            exportCampaign(state.campaign);
-        } catch (error) {
-            alert('Failed to export design. Please try again.');
-            console.error('Export error:', error);
-        }
-    };
-
-    const handleImportClick = () => {
-        fileInputRef.current?.click();
-    };
-
-    const handleImportFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        try {
-            const campaign = await importCampaign(file);
-
-            // Replace entire campaign state
-            dispatch({ type: 'LOAD_CAMPAIGN', campaign });
-
-            alert('Design imported successfully!');
-        } catch (error) {
-            alert(error instanceof Error ? error.message : 'Failed to import design');
-            console.error('Import error:', error);
-        }
-
-        // Reset file input
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
         }
     };
 
@@ -100,33 +62,6 @@ export function PageSidebar() {
                 >
                     + Add Page
                 </Button>
-
-                {/* Export/Import Buttons */}
-                <div className="mt-3 space-y-2">
-                    <Button
-                        onClick={handleExport}
-                        variant="outline"
-                        size="sm"
-                        className="w-full"
-                    >
-                        📤 Export Design
-                    </Button>
-                    <Button
-                        onClick={handleImportClick}
-                        variant="outline"
-                        size="sm"
-                        className="w-full"
-                    >
-                        📥 Import Design
-                    </Button>
-                    <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept=".json"
-                        onChange={handleImportFile}
-                        className="hidden"
-                    />
-                </div>
             </div>
 
             {/* Toolbox Section */}

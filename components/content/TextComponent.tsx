@@ -2,12 +2,17 @@
 
 import { cn } from '@/lib/utils';
 import { createSizeStyle } from '@/lib/size-utils';
+import { createSpacingStyle } from '@/lib/spacing-utils';
 
 interface TextComponentProps {
     content?: string;
     tag?: 'p' | 'h1' | 'h2' | 'h3' | 'h4';
     align?: 'left' | 'center' | 'right';
     width?: string | number;
+    marginTop?: number;
+    marginBottom?: number;
+    paddingTop?: number;
+    paddingBottom?: number;
 }
 
 export function TextComponent({
@@ -15,6 +20,10 @@ export function TextComponent({
     tag = 'p',
     align = 'left',
     width = 'auto',
+    marginTop = 0,
+    marginBottom = 0,
+    paddingTop = 0,
+    paddingBottom = 0,
 }: TextComponentProps) {
     const Tag = tag;
 
@@ -34,6 +43,11 @@ export function TextComponent({
     };
 
     const sizeStyle = createSizeStyle(width, undefined);
+    const spacingStyle = createSpacingStyle(marginTop, marginBottom, paddingTop, paddingBottom);
 
-    return <Tag className={cn(tagStyles[tag], alignClass, 'break-all')} style={sizeStyle}>{content}</Tag>;
+    return (
+        <div style={spacingStyle}>
+            <Tag className={cn(tagStyles[tag], alignClass, 'break-all')} style={sizeStyle}>{content}</Tag>
+        </div>
+    );
 }

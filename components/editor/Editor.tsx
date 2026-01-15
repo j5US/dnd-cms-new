@@ -5,12 +5,31 @@ import { useCampaign } from '@/lib/store';
 import { PageSidebar } from './PageSidebar';
 import { Canvas } from './Canvas';
 import { PropertiesPanel } from './PropertiesPanel';
+import { Toolbar } from './Toolbar';
 import { componentRegistry } from '@/lib/registry';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { loadCampaign } from '@/lib/api-client';
 
 export function Editor() {
     const { dispatch } = useCampaign();
+    const searchParams = useSearchParams();
+    const campaignId = searchParams.get('campaignId');
     const [activeDragItem, setActiveDragItem] = useState<any>(null);
+
+    // Auto-load campaign from URL parameter
+    useEffect(() => {
+        if (campaignId) {
+            loadCampaign(parseInt(campaignId))
+                .then(response => {
+                    dispatch({ type: 'LOAD_CAMPAIGN', campaign: response.campaign });
+                })
+                .catch(error => {
+                    console.error('Failed to auto-load campaign from URL:', error);
+                    alert('Failed to load campaign. It may have been deleted.');
+                });
+        }
+    }, [campaignId, dispatch]);
 
     const handleDragStart = (event: any) => {
         setActiveDragItem(event.active.data.current);
@@ -65,10 +84,13 @@ export function Editor() {
             onDragEnd={handleDragEnd}
             onDragCancel={handleDragCancel}
         >
-            <div className="h-screen flex">
-                <PageSidebar />
-                <Canvas />
-                <PropertiesPanel />
+            <div className="h-screen flex flex-col">
+                <Toolbar />
+                <div className="flex-1 flex overflow-hidden">
+                    <PageSidebar />
+                    <Canvas />
+                    <PropertiesPanel />
+                </div>
             </div>
 
             {/* Drag Overlay */}

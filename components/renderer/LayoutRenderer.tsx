@@ -49,6 +49,11 @@ export function LayoutRenderer({ nodes, isEditor = true }: LayoutRendererProps) 
         let Component: any = null;
         let componentProps: any = { ...node.props, nodeId: node.id };
 
+        // Add isEditor prop for building blocks
+        if (node.type === 'flex-block' || node.type === 'grid-block') {
+            componentProps.isEditor = isEditor;
+        }
+
         switch (node.type) {
             case 'flex-block':
                 Component = FlexBlock;

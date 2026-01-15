@@ -1,0 +1,277 @@
+'use client';
+
+import { useCampaign } from '@/lib/store';
+import { Button } from '@/components/ui/button';
+import { saveCampaign, updateCampaign, listCampaigns, loadCampaign, deleteCampaign, CampaignListItem } from '@/lib/api-client';
+import { useState, useRef, useEffect } from 'react';
+import { importCampaign } from '@/lib/export-utils';
+import { useRouter, useSearchParams } from 'next/navigation';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Trash } from 'lucide-react';
+
+export function Toolbar() {
+    const { state, dispatch } = useCampaign();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const campaignId = searchParams.get('campaignId');
+
+    const [saving, setSaving] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [savedCampaigns, setSavedCampaigns] = useState<CampaignListItem[]>([]);
+    const [showCampaigns, setShowCampaigns] = useState(false);
+    const [campaignName, setCampaignName] = useState<string | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    // Fetch campaign name when campaignId changes
+    useEffect(() => {
+        if (campaignId) {
+            loadCampaign(parseInt(campaignId))
+                .then(response => {
+                    setCampaignName(response.name);
+                })
+                .catch(error => {
+                    console.error('Failed to load campaign name:', error);
+                    setCampaignName(null);
+                });
+        } else {
+            setCampaignName(null);
+        }
+    }, [campaignId]);
+
+    const handleSave = async () => {
+        try {
+            setSaving(true);
+
+            // Check if we're editing an existing campaign (via URL)
+            if (campaignId) {
+                // Show dialog with two options
+                const choice = confirm(
+                    `Do you want to update the existing campaign "${campaignName}"?\n\n` +
+                    `Click OK to UPDATE the existing campaign\n` +
+                    `Click Cancel to SAVE AS A NEW campaign`
+                );
+
+                if (choice) {
+                    // Update existing campaign
+                    await updateCampaign(parseInt(campaignId), state.campaign, campaignName || undefined);
+                    alert('Campaign updated successfully!');
+                } else {
+                    // Save as new campaign
+                    const name = prompt('Enter a name for the new campaign:', `${campaignName} (Copy)`);
+
+                    if (!name) {
+                        setSaving(false);
+                        return;
+                    }
+
+                    const response = await saveCampaign(state.campaign, name);
+                    // Update URL to new campaign
+                    router.push(`/?campaignId=${response.id}`);
+                    alert('Campaign saved as new successfully!');
+                }
+            } else {
+                // New campaign - just prompt for name
+                const name = prompt('Enter a name for this campaign:', `Campaign ${new Date().toLocaleString()}`);
+
+                if (!name) {
+                    setSaving(false);
+                    return;
+                }
+
+                const response = await saveCampaign(state.campaign, name);
+                // Update URL with new campaign ID
+                router.push(`/?campaignId=${response.id}`);
+                alert('Campaign saved successfully!');
+            }
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'Failed to save campaign');
+            console.error('Save error:', error);
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const handleDropdownOpenChange = async (open: boolean) => {
+        if (open) {
+            // Fetch campaigns when dropdown opens
+            try {
+                setLoading(true);
+                const campaigns = await listCampaigns();
+                setSavedCampaigns(campaigns);
+            } catch (error) {
+                alert(error instanceof Error ? error.message : 'Failed to load campaigns');
+                console.error('List error:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        setShowCampaigns(open);
+    };
+
+    const handleLoadCampaign = async (id: number) => {
+        try {
+            setLoading(true);
+            const response = await loadCampaign(id);
+            dispatch({ type: 'LOAD_CAMPAIGN', campaign: response.campaign });
+
+            // Update URL with campaign ID
+            router.push(`/?campaignId=${id}`);
+            setShowCampaigns(false);
+            alert('Campaign loaded successfully!');
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'Failed to load campaign');
+            console.error('Load error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDeleteCampaign = async (id: number, name: string, e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        if (!confirm(`Are you sure you want to delete "${name}"?\n\nThis action cannot be undone.`)) {
+            return;
+        }
+
+        try {
+            setLoading(true);
+            await deleteCampaign(id);
+
+            const campaigns = await listCampaigns();
+            setSavedCampaigns(campaigns);
+
+            if (campaignId === id.toString()) {
+                router.push('/');
+            }
+
+            alert('Campaign deleted successfully!');
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'Failed to delete campaign');
+            console.error('Delete error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleImportClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const handleImportFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        try {
+            const campaign = await importCampaign(file);
+            dispatch({ type: 'LOAD_CAMPAIGN', campaign });
+            router.push('/');
+            alert('Design imported successfully!');
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'Failed to import design');
+            console.error('Import error:', error);
+        }
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+    const handlePreview = () => {
+        sessionStorage.setItem('preview-campaign', JSON.stringify(state.campaign));
+        window.open('/preview', '_blank');
+    };
+
+    return (
+        <div className="h-14 border-b bg-white px-4 flex items-center justify-between shadow-sm">
+            <div className="flex items-center gap-3">
+                <h1 className="text-sm font-semibold text-gray-700">
+                    {campaignName || 'Untitled Campaign'}
+                </h1>
+            </div>
+
+            <div className="flex items-center gap-2">
+                <Button
+                    onClick={handleSave}
+                    variant="outline"
+                    size="sm"
+                    disabled={saving}
+                >
+                    {saving ? ' Saving...' : ' Save'}
+                </Button>
+
+                <DropdownMenu open={showCampaigns} onOpenChange={handleDropdownOpenChange}>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            disabled={loading}
+                        >
+                            {loading ? ' Loading...' : ' Load'}
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-64 max-h-96 overflow-y-auto">
+                        {savedCampaigns.length === 0 ? (
+                            <div className="p-3 text-sm text-gray-500 text-center">
+                                No saved campaigns
+                            </div>
+                        ) : (
+                            savedCampaigns.map((campaign) => (
+                                <DropdownMenuItem
+                                    key={campaign.id}
+                                    onSelect={(e) => e.preventDefault()}
+                                    className="flex items-center justify-between cursor-pointer group"
+                                >
+                                    <div
+                                        className="flex flex-col items-start flex-1 min-w-0"
+                                        onClick={() => handleLoadCampaign(campaign.id)}
+                                    >
+                                        <div className="font-medium truncate w-full">{campaign.name}</div>
+                                        <div className="text-xs text-gray-500">
+                                            {new Date(campaign.updated_at).toLocaleDateString()}
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={(e) => handleDeleteCampaign(campaign.id, campaign.name, e)}
+                                        className="cursor-pointer ml-2 opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-50 transition-opacity"
+                                        title="Delete campaign"
+                                    >
+                                        <Trash className="w-4 h-4 text-red-500" />
+                                    </button>
+                                </DropdownMenuItem>
+                            ))
+                        )}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Button
+                    onClick={handleImportClick}
+                    variant="outline"
+                    size="sm"
+                >
+                    Import
+                </Button>
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".json"
+                    onChange={handleImportFile}
+                    className="hidden"
+                />
+
+                <Button
+                    onClick={handlePreview}
+                    variant="default"
+                    size="sm"
+                >
+                    Preview
+                </Button>
+            </div>
+        </div>
+    );
+}
+

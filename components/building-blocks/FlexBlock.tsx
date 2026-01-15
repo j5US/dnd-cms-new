@@ -13,6 +13,7 @@ interface FlexBlockProps {
     children?: ReactNode;
     className?: string;
     nodeId?: string;
+    isEditor?: boolean;
 }
 
 export function FlexBlock({
@@ -24,6 +25,7 @@ export function FlexBlock({
     children,
     className,
     nodeId,
+    isEditor = true,
 }: FlexBlockProps) {
     const { setNodeRef, isOver } = useDroppable({
         id: nodeId || 'flex-block',
@@ -61,14 +63,15 @@ export function FlexBlock({
                 flexDirection,
                 alignItems,
                 justifyContent,
-                'p-4 border border-dashed border-gray-300 rounded-md bg-gray-50/50',
-                isOver && 'ring-2 ring-green-400 bg-green-50/50',
+                // Only show editor-specific styling when in editor mode
+                isEditor && 'p-4 border border-dashed border-gray-300 rounded-md bg-gray-50/50',
+                isEditor && isOver && 'ring-2 ring-green-400 bg-green-50/50',
                 className
             )}
             style={heightStyle}
         >
             {children || (
-                <div className="text-sm text-gray-400 italic">Drop content components here</div>
+                isEditor && <div className="text-sm text-gray-400 italic">Drop content components here</div>
             )}
         </div>
     );
