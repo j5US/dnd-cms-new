@@ -2,13 +2,14 @@
 
 export type ComponentCategory = 'building-block' | 'content';
 
-export type ComponentType = 
-  | 'flex-block' 
-  | 'grid-block' 
-  | 'button' 
-  | 'text' 
-  | 'image' 
-  | 'input' 
+export type ComponentType =
+  | 'flex-block'
+  | 'grid-block'
+  | 'card-block'
+  | 'button'
+  | 'text'
+  | 'image'
+  | 'input'
   | 'textarea';
 
 // Property value types
@@ -18,7 +19,7 @@ export type PropertyValue = string | number | boolean;
 export interface PropertySchema {
   key: string;
   label: string;
-  type: 'text' | 'number' | 'select' | 'toggle';
+  type: 'text' | 'number' | 'select' | 'toggle' | 'color';
   options?: string[];
   defaultValue: PropertyValue;
 }

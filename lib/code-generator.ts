@@ -33,6 +33,7 @@ export default function ${pageName}() {
     const componentImports: Record<ComponentType, { path: string; name: string }> = {
         'flex-block': { path: '@/components/building-blocks/FlexBlock', name: 'FlexBlock' },
         'grid-block': { path: '@/components/building-blocks/GridBlock', name: 'GridBlock' },
+        'card-block': { path: '@/components/building-blocks/CardBlock', name: 'CardBlock' },
         'button': { path: '@/components/content/ButtonComponent', name: 'ButtonComponent' },
         'text': { path: '@/components/content/TextComponent', name: 'TextComponent' },
         'image': { path: '@/components/content/ImageComponent', name: 'ImageComponent' },

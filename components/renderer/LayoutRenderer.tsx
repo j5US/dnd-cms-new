@@ -3,6 +3,7 @@
 import { LayoutNode, ComponentType } from '@/lib/types';
 import { FlexBlock } from '@/components/building-blocks/FlexBlock';
 import { GridBlock } from '@/components/building-blocks/GridBlock';
+import { CardBlock } from '@/components/building-blocks/CardBlock';
 import { ButtonComponent } from '@/components/content/ButtonComponent';
 import { TextComponent } from '@/components/content/TextComponent';
 import { ImageComponent } from '@/components/content/ImageComponent';
@@ -50,7 +51,7 @@ export function LayoutRenderer({ nodes, isEditor = true }: LayoutRendererProps) 
         let componentProps: any = { ...node.props, nodeId: node.id };
 
         // Add isEditor prop for building blocks
-        if (node.type === 'flex-block' || node.type === 'grid-block') {
+        if (node.type === 'flex-block' || node.type === 'grid-block' || node.type === 'card-block') {
             componentProps.isEditor = isEditor;
         }
 
@@ -60,6 +61,9 @@ export function LayoutRenderer({ nodes, isEditor = true }: LayoutRendererProps) 
                 break;
             case 'grid-block':
                 Component = GridBlock;
+                break;
+            case 'card-block':
+                Component = CardBlock;
                 break;
             case 'button':
                 Component = ButtonComponent;

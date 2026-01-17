@@ -26,7 +26,7 @@ export function GridBlock({
     const { setNodeRef, isOver } = useDroppable({
         id: nodeId || 'grid-block',
         data: {
-            accepts: 'content',
+            accepts: ['content', 'building-block'],
         },
     });
     const gapStyle = gap * 4; // Convert to pixels (gap-1 = 4px in Tailwind)
@@ -50,7 +50,7 @@ export function GridBlock({
             {children || (
                 isEditor && (
                     <div className="col-span-full text-sm text-gray-400 italic">
-                        Drop content components here
+                        Drop components here
                     </div>
                 )
             )}

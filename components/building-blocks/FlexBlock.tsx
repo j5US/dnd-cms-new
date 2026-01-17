@@ -30,7 +30,7 @@ export function FlexBlock({
     const { setNodeRef, isOver } = useDroppable({
         id: nodeId || 'flex-block',
         data: {
-            accepts: 'content',
+            accepts: ['content', 'building-block'],
         },
     });
     const flexDirection = direction === 'row' ? 'flex-row' : 'flex-col';
@@ -71,7 +71,7 @@ export function FlexBlock({
             style={heightStyle}
         >
             {children || (
-                isEditor && <div className="text-sm text-gray-400 italic">Drop content components here</div>
+                isEditor && <div className="text-sm text-gray-400 italic">Drop components here</div>
             )}
         </div>
     );

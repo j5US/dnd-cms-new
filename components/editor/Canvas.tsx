@@ -3,13 +3,20 @@
 import { useDroppable } from '@dnd-kit/core';
 import { useCampaign } from '@/lib/store';
 import { LayoutRenderer } from '@/components/renderer/LayoutRenderer';
-import { componentRegistry } from '@/lib/registry';
 import { cn } from '@/lib/utils';
 
 export function Canvas() {
     const { activePage } = useCampaign();
     const { setNodeRef, isOver } = useDroppable({
         id: 'canvas-root',
+        data: {
+            accepts: 'building-block',
+        },
+    });
+
+    // Separate droppable for the bottom drop zone
+    const { setNodeRef: setBottomDropRef, isOver: isBottomOver } = useDroppable({
+        id: 'canvas-bottom',
         data: {
             accepts: 'building-block',
         },
@@ -44,7 +51,21 @@ export function Canvas() {
                         </div>
                     </div>
                 ) : (
-                    <LayoutRenderer nodes={activePage.layout} isEditor={true} />
+                    <>
+                        <LayoutRenderer nodes={activePage.layout} isEditor={true} />
+                        {/* Always-accessible drop zone at the bottom */}
+                        <div
+                            ref={setBottomDropRef}
+                            className={cn(
+                                'min-h-[80px] border-2 border-dashed border-gray-300 rounded-md',
+                                'flex items-center justify-center text-sm text-gray-400 italic',
+                                'transition-all',
+                                isBottomOver && 'border-blue-400 bg-blue-50 text-blue-600'
+                            )}
+                        >
+                            Drop building blocks here
+                        </div>
+                    </>
                 )}
             </div>
         </div>

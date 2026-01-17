@@ -75,6 +75,7 @@ function PreviewContent({
     const componentToFilePath: Record<ComponentType, string> = {
         'flex-block': 'components/building-blocks/FlexBlock.tsx',
         'grid-block': 'components/building-blocks/GridBlock.tsx',
+        'card-block': 'components/building-blocks/CardBlock.tsx',
         'button': 'components/content/ButtonComponent.tsx',
         'text': 'components/content/TextComponent.tsx',
         'image': 'components/content/ImageComponent.tsx',

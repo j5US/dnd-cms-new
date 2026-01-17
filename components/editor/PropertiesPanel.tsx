@@ -108,6 +108,25 @@ export function PropertiesPanel() {
                                     className="w-4 h-4"
                                 />
                             )}
+
+                            {schema.type === 'color' && (
+                                <div className="flex gap-2 items-center">
+                                    <input
+                                        id={schema.key}
+                                        type="color"
+                                        value={currentValue as string}
+                                        onChange={(e) => handlePropChange(schema.key, e.target.value)}
+                                        className="w-12 h-10 rounded border cursor-pointer"
+                                    />
+                                    <Input
+                                        type="text"
+                                        value={currentValue as string}
+                                        onChange={(e) => handlePropChange(schema.key, e.target.value)}
+                                        placeholder="#ffffff"
+                                        className="flex-1"
+                                    />
+                                </div>
+                            )}
                         </div>
                     );
                 })}

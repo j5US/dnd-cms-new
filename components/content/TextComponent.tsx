@@ -9,6 +9,8 @@ interface TextComponentProps {
     tag?: 'p' | 'h1' | 'h2' | 'h3' | 'h4';
     align?: 'left' | 'center' | 'right';
     width?: string | number;
+    color?: string;
+    fontSize?: number;
     marginTop?: number;
     marginBottom?: number;
     paddingTop?: number;
@@ -20,6 +22,8 @@ export function TextComponent({
     tag = 'p',
     align = 'left',
     width = 'auto',
+    color = '#000000',
+    fontSize = 16,
     marginTop = 0,
     marginBottom = 0,
     paddingTop = 0,
@@ -44,10 +48,11 @@ export function TextComponent({
 
     const sizeStyle = createSizeStyle(width, undefined);
     const spacingStyle = createSpacingStyle(marginTop, marginBottom, paddingTop, paddingBottom);
+    const textStyle = { ...sizeStyle, color, fontSize: `${fontSize}px` };
 
     return (
         <div style={spacingStyle}>
-            <Tag className={cn(tagStyles[tag], alignClass, 'break-all')} style={sizeStyle}>{content}</Tag>
+            <Tag className={cn(tagStyles[tag], alignClass, 'break-all')} style={textStyle}>{content}</Tag>
         </div>
     );
 }

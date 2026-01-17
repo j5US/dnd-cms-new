@@ -50,8 +50,8 @@ export function Editor() {
             const componentDef = componentRegistry[componentType];
 
             // Validate drop target
-            if (over.id === 'canvas-root') {
-                // Can only drop building blocks on root
+            if (over.id === 'canvas-root' || over.id === 'canvas-bottom') {
+                // Can only drop building blocks on root or bottom drop zone
                 if (componentDef.category === 'building-block') {
                     dispatch({
                         type: 'ADD_COMPONENT',
@@ -59,9 +59,19 @@ export function Editor() {
                     });
                 }
             } else {
-                // Dropping into a building block
-                // Can only drop content components
-                if (componentDef.category === 'content') {
+                // Dropping into a building block or other droppable
+                const dropTargetData = over.data?.current;
+                const accepts = dropTargetData?.accepts;
+
+                // Check if the drop target accepts this component category
+                let canDrop = false;
+                if (Array.isArray(accepts)) {
+                    canDrop = accepts.includes(componentDef.category);
+                } else if (typeof accepts === 'string') {
+                    canDrop = accepts === componentDef.category;
+                }
+
+                if (canDrop) {
                     const parentId = over.id as string;
                     dispatch({
                         type: 'ADD_COMPONENT',
