@@ -143,11 +143,15 @@ function campaignReducer(state: CampaignState, action: CampaignAction): Campaign
         updatedLayout = [...activePage.layout];
         updatedLayout.splice(insertIndex, 0, newNode);
       } else {
+        // Capture these before the nested function for proper type narrowing
+        const targetParentId = action.parentId;
+        const targetIndex = action.index;
+
         function addToParent(nodes: LayoutNode[]): LayoutNode[] {
           return nodes.map((node) => {
-            if (node.id === action.parentId) {
+            if (node.id === targetParentId) {
               const children = node.children || [];
-              const insertIndex = action.index ?? children.length;
+              const insertIndex = targetIndex ?? children.length;
               const updatedChildren = [...children];
               updatedChildren.splice(insertIndex, 0, newNode);
               return { ...node, children: updatedChildren };

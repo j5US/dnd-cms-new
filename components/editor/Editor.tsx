@@ -1,6 +1,6 @@
 'use client';
 
-import { DndContext, DragEndEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragStartEvent, DragOverlay, closestCenter } from '@dnd-kit/core';
 import { useCampaign } from '@/lib/store';
 import { PageSidebar } from './PageSidebar';
 import { Canvas } from './Canvas';
@@ -10,12 +10,13 @@ import { componentRegistry } from '@/lib/registry';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { loadCampaign } from '@/lib/api-client';
+import { DragData, ComponentType } from '@/lib/types';
 
 export function Editor() {
     const { dispatch } = useCampaign();
     const searchParams = useSearchParams();
     const campaignId = searchParams.get('campaignId');
-    const [activeDragItem, setActiveDragItem] = useState<any>(null);
+    const [activeDragItem, setActiveDragItem] = useState<DragData | null>(null);
 
     // Auto-load campaign from URL parameter
     useEffect(() => {
@@ -31,8 +32,8 @@ export function Editor() {
         }
     }, [campaignId, dispatch]);
 
-    const handleDragStart = (event: any) => {
-        setActiveDragItem(event.active.data.current);
+    const handleDragStart = (event: DragStartEvent) => {
+        setActiveDragItem(event.active.data.current as DragData ?? null);
     };
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -42,11 +43,11 @@ export function Editor() {
 
         if (!over) return;
 
-        const dragData = active.data.current;
+        const dragData = active.data.current as DragData | undefined;
 
         // Check if we're dragging a new component
         if (dragData?.type === 'new') {
-            const componentType = dragData.componentType;
+            const componentType: ComponentType = dragData.componentType;
             const componentDef = componentRegistry[componentType];
 
             // Validate drop target
