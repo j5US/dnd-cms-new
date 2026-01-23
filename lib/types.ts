@@ -10,16 +10,20 @@ export type ComponentType =
   | 'text'
   | 'image'
   | 'input'
-  | 'textarea';
+  | 'textarea'
+  | 'heading'
+  | 'video'
+  | 'divider'
+  | 'spacer';
 
 // Property value types
-export type PropertyValue = string | number | boolean;
+export type PropertyValue = string | number | boolean | Record<string, string | number>;
 
 // Property schema for the properties panel
 export interface PropertySchema {
   key: string;
   label: string;
-  type: 'text' | 'number' | 'select' | 'toggle' | 'color';
+  type: 'text' | 'number' | 'select' | 'toggle' | 'color' | 'spacing';
   options?: string[];
   defaultValue: PropertyValue;
 }

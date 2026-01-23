@@ -8,6 +8,8 @@ interface GridBlockProps {
     columns?: number;
     gap?: number;
     height?: string | number;
+    padding?: any;
+    margin?: any;
     children?: ReactNode;
     className?: string;
     nodeId?: string;
@@ -18,6 +20,8 @@ export function GridBlock({
     columns = 2,
     gap = 4,
     height = 'auto',
+    padding = { all: '0px', top: '0px', right: '0px', bottom: '0px', left: '0px' },
+    margin = { all: '0px', top: '0px', right: '0px', bottom: '0px', left: '0px' },
     children,
     className,
     nodeId,
@@ -31,21 +35,42 @@ export function GridBlock({
     });
     const gapStyle = gap * 4; // Convert to pixels (gap-1 = 4px in Tailwind)
 
-    const heightStyle = height === 'auto'
-        ? { gap: `${gapStyle}px`, gridTemplateColumns: `repeat(${columns}, 1fr)` }
-        : { height: `${height}px`, gap: `${gapStyle}px`, gridTemplateColumns: `repeat(${columns}, 1fr)` };
+    // Helper to get spacing value (duplicated for now or import from utils if available)
+    const getSpacing = (val: any, side: string) => {
+        if (typeof val === 'number') return `${val * 4}px`;
+        if (typeof val === 'string') return val;
+        if (typeof val === 'object') return val[side] || val.all || '0px';
+        return '0px';
+    };
+
+    const containerStyle: React.CSSProperties = {
+        paddingTop: getSpacing(padding, 'top'),
+        paddingRight: getSpacing(padding, 'right'),
+        paddingBottom: getSpacing(padding, 'bottom'),
+        paddingLeft: getSpacing(padding, 'left'),
+        marginTop: getSpacing(margin, 'top'),
+        marginRight: getSpacing(margin, 'right'),
+        marginBottom: getSpacing(margin, 'bottom'),
+        marginLeft: getSpacing(margin, 'left'),
+    };
+
+    if (height !== 'auto') {
+        containerStyle.height = `${height}px`;
+    }
+    containerStyle.gap = `${gapStyle}px`;
+    containerStyle.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 
     return (
         <div
             ref={setNodeRef}
             className={cn(
-                'w-full grid *:w-full',
+                'grid *:w-full',
                 // Only show editor-specific styling when in editor mode
-                isEditor && 'p-4 border border-dashed border-gray-300 rounded-md bg-gray-50/50',
+                isEditor && 'border border-dashed border-gray-300 rounded-md bg-gray-50/50',
                 isEditor && isOver && 'ring-2 ring-green-400 bg-green-50/50',
                 className
             )}
-            style={heightStyle}
+            style={containerStyle}
         >
             {children || (
                 isEditor && (

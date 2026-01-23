@@ -1,181 +1,6 @@
-import { ComponentDefinition, ComponentType } from './types';
+import { ComponentDefinition } from '../types';
 
-// Component registry - maps component types to their definitions
-export const componentRegistry: Record<ComponentType, ComponentDefinition> = {
-    // Building Blocks
-    'flex-block': {
-        type: 'flex-block',
-        category: 'building-block',
-        label: 'Flex Block',
-        icon: '📦',
-        acceptsChildren: true,
-        defaultProps: {
-            direction: 'column',
-            align: 'center',
-            justify: 'start',
-            gap: 4,
-            height: 'auto',
-        },
-        propSchema: [
-            {
-                key: 'direction',
-                label: 'Direction',
-                type: 'select',
-                options: ['row', 'column'],
-                defaultValue: 'column',
-            },
-            {
-                key: 'align',
-                label: 'Align',
-                type: 'select',
-                options: ['start', 'center', 'end'],
-                defaultValue: 'center',
-            },
-            {
-                key: 'justify',
-                label: 'Justify',
-                type: 'select',
-                options: ['start', 'center', 'end', 'between'],
-                defaultValue: 'start',
-            },
-            {
-                key: 'gap',
-                label: 'Gap',
-                type: 'number',
-                defaultValue: 4,
-            },
-            {
-                key: 'height',
-                label: 'Height (px or auto)',
-                type: 'text',
-                defaultValue: 'auto',
-            },
-        ],
-    },
-
-    'grid-block': {
-        type: 'grid-block',
-        category: 'building-block',
-        label: 'Grid Block',
-        icon: '⊞',
-        acceptsChildren: true,
-        defaultProps: {
-            columns: 2,
-            gap: 4,
-            height: 'auto',
-        },
-        propSchema: [
-            {
-                key: 'columns',
-                label: 'Columns',
-                type: 'select',
-                options: ['1', '2', '3', '4'],
-                defaultValue: 2,
-            },
-            {
-                key: 'gap',
-                label: 'Gap',
-                type: 'number',
-                defaultValue: 4,
-            },
-            {
-                key: 'height',
-                label: 'Height (px or auto)',
-                type: 'text',
-                defaultValue: 'auto',
-            },
-        ],
-    },
-
-    'card-block': {
-        type: 'card-block',
-        category: 'building-block',
-        label: 'Card',
-        icon: '🎴',
-        acceptsChildren: true,
-        defaultProps: {
-            padding: 4,
-            borderRadius: 2,
-            backgroundColor: '#ffffff',
-            borderColor: '#e5e7eb',
-            borderWidth: 1,
-            shadow: 'md',
-            width: 'auto',
-            height: 'auto',
-            justify: 'start',
-            align: 'start',
-        },
-        propSchema: [
-            {
-                key: 'padding',
-                label: 'Padding',
-                type: 'select',
-                options: ['0', '1', '2', '3', '4', '5', '6'],
-                defaultValue: 4,
-            },
-            {
-                key: 'borderRadius',
-                label: 'Border Radius',
-                type: 'select',
-                options: ['0', '1', '2', '3', '4'],
-                defaultValue: 2,
-            },
-            {
-                key: 'backgroundColor',
-                label: 'Background Color',
-                type: 'color',
-                defaultValue: '#ffffff',
-            },
-            {
-                key: 'borderColor',
-                label: 'Border Color',
-                type: 'color',
-                defaultValue: '#e5e7eb',
-            },
-            {
-                key: 'borderWidth',
-                label: 'Border Width',
-                type: 'select',
-                options: ['0', '1', '2', '3', '4'],
-                defaultValue: 1,
-            },
-            {
-                key: 'shadow',
-                label: 'Shadow',
-                type: 'select',
-                options: ['none', 'sm', 'md', 'lg'],
-                defaultValue: 'md',
-            },
-            {
-                key: 'justify',
-                label: 'Justify Content',
-                type: 'select',
-                options: ['start', 'center', 'end', 'between'],
-                defaultValue: 'start',
-            },
-            {
-                key: 'align',
-                label: 'Align Items',
-                type: 'select',
-                options: ['start', 'center', 'end'],
-                defaultValue: 'start',
-            },
-            {
-                key: 'width',
-                label: 'Width (px or auto)',
-                type: 'text',
-                defaultValue: 'auto',
-            },
-            {
-                key: 'height',
-                label: 'Height (px or auto)',
-                type: 'text',
-                defaultValue: 'auto',
-            },
-        ],
-    },
-
-    // Content Components
+export const contentComponents: Record<string, ComponentDefinition> = {
     'button': {
         type: 'button',
         category: 'content',
@@ -561,23 +386,247 @@ export const componentRegistry: Record<ComponentType, ComponentDefinition> = {
             },
         ],
     },
+    'heading': {
+        type: 'heading',
+        category: 'content',
+        label: 'Heading',
+        icon: 'H',
+        acceptsChildren: false,
+        defaultProps: {
+            text: 'Heading',
+            level: 'h2',
+            align: 'left',
+            color: '#000000',
+            width: 'auto',
+            marginTop: 0,
+            marginBottom: 0,
+            paddingTop: 0,
+            paddingBottom: 0,
+        },
+        propSchema: [
+            {
+                key: 'text',
+                label: 'Text',
+                type: 'text',
+                defaultValue: 'Heading',
+            },
+            {
+                key: 'level',
+                label: 'Level',
+                type: 'select',
+                options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+                defaultValue: 'h2',
+            },
+            {
+                key: 'align',
+                label: 'Align',
+                type: 'select',
+                options: ['left', 'center', 'right'],
+                defaultValue: 'left',
+            },
+            {
+                key: 'color',
+                label: 'Color',
+                type: 'color',
+                defaultValue: '#000000',
+            },
+            {
+                key: 'width',
+                label: 'Width (px or auto)',
+                type: 'text',
+                defaultValue: 'auto',
+            },
+            {
+                key: 'marginTop',
+                label: 'Margin Top',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'marginBottom',
+                label: 'Margin Bottom',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'paddingTop',
+                label: 'Padding Top',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'paddingBottom',
+                label: 'Padding Bottom',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+        ],
+    },
+
+    'video': {
+        type: 'video',
+        category: 'content',
+        label: 'Video',
+        icon: '🎥',
+        acceptsChildren: false,
+        defaultProps: {
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            width: 300,
+            height: 200,
+            controls: true,
+            autoplay: false,
+            marginTop: 0,
+            marginBottom: 0,
+            paddingTop: 0,
+            paddingBottom: 0,
+        },
+        propSchema: [
+            {
+                key: 'url',
+                label: 'Video URL',
+                type: 'text',
+                defaultValue: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+            },
+            {
+                key: 'width',
+                label: 'Width',
+                type: 'number',
+                defaultValue: 300,
+            },
+            {
+                key: 'height',
+                label: 'Height',
+                type: 'number',
+                defaultValue: 200,
+            },
+            {
+                key: 'controls',
+                label: 'Show Controls',
+                type: 'toggle',
+                defaultValue: true,
+            },
+            {
+                key: 'autoplay',
+                label: 'Autoplay',
+                type: 'toggle',
+                defaultValue: false,
+            },
+            {
+                key: 'marginTop',
+                label: 'Margin Top',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'marginBottom',
+                label: 'Margin Bottom',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'paddingTop',
+                label: 'Padding Top',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'paddingBottom',
+                label: 'Padding Bottom',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+        ],
+    },
+
+    'divider': {
+        type: 'divider',
+        category: 'content',
+        label: 'Divider',
+        icon: '➖',
+        acceptsChildren: false,
+        defaultProps: {
+            color: '#e5e7eb',
+            thickness: 1,
+            width: '100%',
+            marginTop: 2,
+            marginBottom: 2,
+            paddingTop: 0,
+            paddingBottom: 0,
+        },
+        propSchema: [
+            {
+                key: 'color',
+                label: 'Color',
+                type: 'color',
+                defaultValue: '#e5e7eb',
+            },
+            {
+                key: 'thickness',
+                label: 'Thickness (px)',
+                type: 'number',
+                defaultValue: 1,
+            },
+            {
+                key: 'width',
+                label: 'Width (e.g. 100%, 50px)',
+                type: 'text',
+                defaultValue: '100%',
+            },
+            {
+                key: 'marginTop',
+                label: 'Margin Top',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 2,
+            },
+            {
+                key: 'marginBottom',
+                label: 'Margin Bottom',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 2,
+            },
+            {
+                key: 'paddingTop',
+                label: 'Padding Top',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+            {
+                key: 'paddingBottom',
+                label: 'Padding Bottom',
+                type: 'select',
+                options: ['0', '1', '2', '3', '4'],
+                defaultValue: 0,
+            },
+        ],
+    },
+
+    'spacer': {
+        type: 'spacer',
+        category: 'content',
+        label: 'Spacer',
+        icon: '↕️',
+        acceptsChildren: false,
+        defaultProps: {
+            height: 32,
+        },
+        propSchema: [
+            {
+                key: 'height',
+                label: 'Height (px)',
+                type: 'number',
+                defaultValue: 32,
+            },
+        ],
+    },
 };
-
-// Helper to get building blocks
-export function getBuildingBlocks(): ComponentDefinition[] {
-    return Object.values(componentRegistry).filter(
-        (def) => def.category === 'building-block'
-    );
-}
-
-// Helper to get content components
-export function getContentComponents(): ComponentDefinition[] {
-    return Object.values(componentRegistry).filter(
-        (def) => def.category === 'content'
-    );
-}
-
-// Helper to check if a component accepts children
-export function canAcceptChildren(type: ComponentType): boolean {
-    return componentRegistry[type].acceptsChildren;
-}

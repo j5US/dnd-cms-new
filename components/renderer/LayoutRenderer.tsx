@@ -1,6 +1,6 @@
 'use client';
 
-import { LayoutNode, ComponentType } from '@/lib/types';
+import { LayoutNode } from '@/lib/types';
 import { FlexBlock } from '@/components/building-blocks/FlexBlock';
 import { GridBlock } from '@/components/building-blocks/GridBlock';
 import { CardBlock } from '@/components/building-blocks/CardBlock';
@@ -9,6 +9,10 @@ import { TextComponent } from '@/components/content/TextComponent';
 import { ImageComponent } from '@/components/content/ImageComponent';
 import { InputComponent } from '@/components/content/InputComponent';
 import { TextAreaComponent } from '@/components/content/TextAreaComponent';
+import { HeadingComponent } from '@/components/content/HeadingComponent';
+import { VideoComponent } from '@/components/content/VideoComponent';
+import { DividerComponent } from '@/components/content/DividerComponent';
+import { SpacerComponent } from '@/components/content/SpacerComponent';
 import { useCampaign } from '@/lib/store';
 
 interface LayoutRendererProps {
@@ -71,14 +75,26 @@ export function LayoutRenderer({ nodes, isEditor = true }: LayoutRendererProps) 
             case 'text':
                 Component = TextComponent;
                 break;
+            case 'heading':
+                Component = HeadingComponent;
+                break;
             case 'image':
                 Component = ImageComponent;
+                break;
+            case 'video':
+                Component = VideoComponent;
                 break;
             case 'input':
                 Component = InputComponent;
                 break;
             case 'textarea':
                 Component = TextAreaComponent;
+                break;
+            case 'divider':
+                Component = DividerComponent;
+                break;
+            case 'spacer':
+                Component = SpacerComponent;
                 break;
             default:
                 return null;

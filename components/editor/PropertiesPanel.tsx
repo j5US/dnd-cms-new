@@ -1,16 +1,18 @@
-'use client';
-
 import { useCampaign } from '@/lib/store';
 import { componentRegistry } from '@/lib/registry';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { TextControl } from './controls/TextControl';
+import { NumberControl } from './controls/NumberControl';
+import { SelectControl } from './controls/SelectControl';
+import { ToggleControl } from './controls/ToggleControl';
+import { ColorControl } from './controls/ColorControl';
+import { SpacingControl } from './controls/SpacingControl';
 
 export function PropertiesPanel() {
     const { state, dispatch, activePage } = useCampaign();
 
     if (!state.selectedNode || !activePage) {
         return (
-            <div className="w-80 border-l bg-gray-50 p-4">
+            <div className="w-[448px] border-l bg-gray-50 p-4">
                 <div className="text-center text-gray-400 mt-8">
                     <p className="text-sm">No component selected</p>
                     <p className="text-xs mt-2">Click on a component to edit its properties</p>
@@ -46,7 +48,7 @@ export function PropertiesPanel() {
     };
 
     return (
-        <div className="w-80 border-l bg-gray-50 p-4 overflow-y-auto">
+        <div className="w-[448px] border-l bg-gray-50 p-4 overflow-y-auto">
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Properties</h2>
 
             <div className="mb-4 pb-4 border-b">
@@ -57,78 +59,68 @@ export function PropertiesPanel() {
             </div>
 
             <div className="space-y-4">
-                {definition.propSchema.map((schema) => {
+                {definition.propSchema.map((schema: any) => {
                     const currentValue = node.props[schema.key] ?? schema.defaultValue;
 
-                    return (
-                        <div key={schema.key}>
-                            <Label htmlFor={schema.key} className="text-sm font-medium text-gray-700 mb-2 block">
-                                {schema.label}
-                            </Label>
-
-                            {schema.type === 'text' && (
-                                <Input
-                                    id={schema.key}
-                                    type="text"
+                    switch (schema.type) {
+                        case 'text':
+                            return (
+                                <TextControl
+                                    key={schema.key}
+                                    label={schema.label}
                                     value={currentValue as string}
-                                    onChange={(e) => handlePropChange(schema.key, e.target.value)}
+                                    onChange={(val) => handlePropChange(schema.key, val)}
                                 />
-                            )}
-
-                            {schema.type === 'number' && (
-                                <Input
-                                    id={schema.key}
-                                    type="number"
+                            );
+                        case 'number':
+                            return (
+                                <NumberControl
+                                    key={schema.key}
+                                    label={schema.label}
                                     value={currentValue as number}
-                                    onChange={(e) => handlePropChange(schema.key, Number(e.target.value))}
+                                    onChange={(val) => handlePropChange(schema.key, val)}
                                 />
-                            )}
-
-                            {schema.type === 'select' && schema.options && (
-                                <select
-                                    id={schema.key}
+                            );
+                        case 'select':
+                            return (
+                                <SelectControl
+                                    key={schema.key}
+                                    label={schema.label}
                                     value={currentValue as string}
-                                    onChange={(e) => handlePropChange(schema.key, e.target.value)}
-                                    className="w-full px-3 py-2 border rounded-md bg-white"
-                                >
-                                    {schema.options.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-                            )}
-
-                            {schema.type === 'toggle' && (
-                                <input
-                                    id={schema.key}
-                                    type="checkbox"
-                                    checked={currentValue as boolean}
-                                    onChange={(e) => handlePropChange(schema.key, e.target.checked)}
-                                    className="w-4 h-4"
+                                    options={schema.options || []}
+                                    onChange={(val) => handlePropChange(schema.key, val)}
                                 />
-                            )}
-
-                            {schema.type === 'color' && (
-                                <div className="flex gap-2 items-center">
-                                    <input
-                                        id={schema.key}
-                                        type="color"
-                                        value={currentValue as string}
-                                        onChange={(e) => handlePropChange(schema.key, e.target.value)}
-                                        className="w-12 h-10 rounded border cursor-pointer"
-                                    />
-                                    <Input
-                                        type="text"
-                                        value={currentValue as string}
-                                        onChange={(e) => handlePropChange(schema.key, e.target.value)}
-                                        placeholder="#ffffff"
-                                        className="flex-1"
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    );
+                            );
+                        case 'toggle':
+                            return (
+                                <ToggleControl
+                                    key={schema.key}
+                                    label={schema.label}
+                                    value={currentValue as boolean}
+                                    onChange={(val) => handlePropChange(schema.key, val)}
+                                />
+                            );
+                        case 'color':
+                            return (
+                                <ColorControl
+                                    key={schema.key}
+                                    label={schema.label}
+                                    value={currentValue as string}
+                                    onChange={(val) => handlePropChange(schema.key, val)}
+                                />
+                            );
+                        case 'spacing':
+                            return (
+                                <SpacingControl
+                                    key={schema.key}
+                                    label={schema.label}
+                                    values={currentValue as any || {}}
+                                    onChange={(val) => handlePropChange(schema.key, val)}
+                                />
+                            );
+                        default:
+                            return null;
+                    }
                 })}
             </div>
 
