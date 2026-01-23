@@ -78,9 +78,13 @@ function PreviewContent({
         'card-block': 'components/building-blocks/CardBlock.tsx',
         'button': 'components/content/ButtonComponent.tsx',
         'text': 'components/content/TextComponent.tsx',
+        'heading': 'components/content/HeadingComponent.tsx',
         'image': 'components/content/ImageComponent.tsx',
         'input': 'components/content/InputComponent.tsx',
         'textarea': 'components/content/TextAreaComponent.tsx',
+        'video': 'components/content/VideoComponent.tsx',
+        'divider': 'components/content/DividerComponent.tsx',
+        'spacer': 'components/content/SpacerComponent.tsx',
     };
 
     // Get selected component implementation

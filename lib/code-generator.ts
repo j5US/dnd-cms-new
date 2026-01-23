@@ -36,9 +36,13 @@ export default function ${pageName}() {
         'card-block': { path: '@/components/building-blocks/CardBlock', name: 'CardBlock' },
         'button': { path: '@/components/content/ButtonComponent', name: 'ButtonComponent' },
         'text': { path: '@/components/content/TextComponent', name: 'TextComponent' },
+        'heading': { path: '@/components/content/HeadingComponent', name: 'HeadingComponent' },
         'image': { path: '@/components/content/ImageComponent', name: 'ImageComponent' },
         'input': { path: '@/components/content/InputComponent', name: 'InputComponent' },
         'textarea': { path: '@/components/content/TextAreaComponent', name: 'TextAreaComponent' },
+        'video': { path: '@/components/content/VideoComponent', name: 'VideoComponent' },
+        'divider': { path: '@/components/content/DividerComponent', name: 'DividerComponent' },
+        'spacer': { path: '@/components/content/SpacerComponent', name: 'SpacerComponent' },
     };
 
     // Generate import statements
