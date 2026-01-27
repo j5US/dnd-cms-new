@@ -72,7 +72,7 @@ function PreviewContent({
     const generatedCode = generateActivePageCode(campaign, currentPage.id);
 
     // Component type to file path mapping
-    const componentToFilePath: Record<ComponentType, string> = {
+    const componentToFilePath: Partial<Record<ComponentType, string>> = {
         'flex-block': 'components/building-blocks/FlexBlock.tsx',
         'grid-block': 'components/building-blocks/GridBlock.tsx',
         'card-block': 'components/building-blocks/CardBlock.tsx',
@@ -180,10 +180,10 @@ function PreviewContent({
                 </div>
 
                 {/* Content */}
-                <div className="container mx-auto p-8 flex justify-center">
+                <div className="container mx-auto p-2 flex justify-center">
                     {viewMode === 'preview' ? (
                         <div className="w-full max-w-md min-h-screen bg-white rounded-lg shadow-lg overflow-hidden">
-                            <div className="p-8">
+                            <div>
                                 {currentPage && currentPage.layout && currentPage.layout.length > 0 ? (
                                     <LayoutRenderer nodes={currentPage.layout} isEditor={false} />
                                 ) : (
