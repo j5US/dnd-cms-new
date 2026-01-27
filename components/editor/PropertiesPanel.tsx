@@ -6,16 +6,69 @@ import { SelectControl } from './controls/SelectControl';
 import { ToggleControl } from './controls/ToggleControl';
 import { ColorControl } from './controls/ColorControl';
 import { SpacingControl } from './controls/SpacingControl';
+import { PageSettings, SpacingValue } from '@/lib/types';
 
 export function PropertiesPanel() {
     const { state, dispatch, activePage } = useCampaign();
 
-    if (!state.selectedNode || !activePage) {
+    // Default page settings
+    const defaultPageSettings: PageSettings = {
+        padding: { all: '16px', top: '16px', right: '16px', bottom: '16px', left: '16px' },
+    };
+
+    // Handle page settings changes
+    const handlePageSettingChange = (key: keyof PageSettings, value: { top?: string; right?: string; bottom?: string; left?: string; all?: string }) => {
+        // Ensure all values are defined with defaults
+        const spacingValue: SpacingValue = {
+            all: value.all || value.top || '0px',
+            top: value.top || value.all || '0px',
+            right: value.right || value.all || '0px',
+            bottom: value.bottom || value.all || '0px',
+            left: value.left || value.all || '0px',
+        };
+        dispatch({
+            type: 'UPDATE_PAGE_SETTINGS',
+            settings: { [key]: spacingValue },
+        });
+    };
+
+    // Show Page Settings when no component is selected
+    if (!state.selectedNode) {
+        const pageSettings = activePage?.settings || defaultPageSettings;
+
+        return (
+            <div className="w-[448px] border-l bg-gray-50 p-4 overflow-y-auto">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">Page Settings</h2>
+
+                <div className="mb-4 pb-4 border-b">
+                    <p className="text-sm text-gray-600">
+                        <strong>Canvas Layout</strong>
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                        Configure padding for the main canvas area
+                    </p>
+                </div>
+
+                <div className="space-y-4">
+                    <SpacingControl
+                        label="Padding"
+                        values={pageSettings.padding}
+                        onChange={(val) => handlePageSettingChange('padding', val)}
+                    />
+                </div>
+
+                <div className="mt-6 pt-4 border-t text-center text-gray-400">
+                    <p className="text-xs">Click on a component to edit its properties</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!activePage) {
         return (
             <div className="w-[448px] border-l bg-gray-50 p-4">
                 <div className="text-center text-gray-400 mt-8">
-                    <p className="text-sm">No component selected</p>
-                    <p className="text-xs mt-2">Click on a component to edit its properties</p>
+                    <p className="text-sm">No active page</p>
                 </div>
             </div>
         );

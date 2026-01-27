@@ -185,19 +185,40 @@ function PreviewContent({
 
                 {/* Content */}
                 <div className="container mx-auto p-8 flex justify-center">
-                    {viewMode === 'preview' ? (
-                        <div className="w-full max-w-md min-h-screen bg-white rounded-lg shadow-lg overflow-hidden">
-                            <div className="p-8">
-                                {currentPage && currentPage.layout && currentPage.layout.length > 0 ? (
-                                    <LayoutRenderer nodes={currentPage.layout} isEditor={false} />
-                                ) : (
-                                    <div className="text-center text-gray-500 py-12">
-                                        This page is empty
-                                    </div>
-                                )}
+                    {viewMode === 'preview' ? (() => {
+                        // Helper to get spacing value (same as Canvas)
+                        const getSpacing = (val: any, side: string): string => {
+                            if (typeof val === 'string') return val;
+                            if (typeof val === 'object' && val) return val[side] || val.all || '0px';
+                            return '0px';
+                        };
+
+                        // Get page settings with defaults
+                        const pageSettings = currentPage.settings || {
+                            padding: { all: '16px', top: '16px', right: '16px', bottom: '16px', left: '16px' },
+                        };
+
+                        const canvasStyle: React.CSSProperties = {
+                            paddingTop: getSpacing(pageSettings.padding, 'top'),
+                            paddingRight: getSpacing(pageSettings.padding, 'right'),
+                            paddingBottom: getSpacing(pageSettings.padding, 'bottom'),
+                            paddingLeft: getSpacing(pageSettings.padding, 'left'),
+                        };
+
+                        return (
+                            <div className="w-full max-w-md min-h-screen bg-white rounded-lg shadow-lg overflow-hidden">
+                                <div style={canvasStyle}>
+                                    {currentPage && currentPage.layout && currentPage.layout.length > 0 ? (
+                                        <LayoutRenderer nodes={currentPage.layout} isEditor={false} />
+                                    ) : (
+                                        <div className="text-center text-gray-500 py-12">
+                                            This page is empty
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    ) : viewMode === 'code' ? (
+                        );
+                    })() : viewMode === 'code' ? (
                         <div className="w-full h-[calc(100vh-120px)] bg-white rounded-lg shadow-lg overflow-hidden">
                             <CodeView code={generatedCode} height="100%" filePath="Generated Page Code" />
                         </div>

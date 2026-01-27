@@ -47,11 +47,27 @@ export interface LayoutNode {
   children?: LayoutNode[];
 }
 
+// Spacing value for padding/margin controls
+export interface SpacingValue {
+  all: string;
+  top: string;
+  right: string;
+  bottom: string;
+  left: string;
+}
+
+// Page-level settings for canvas styling
+export interface PageSettings {
+  padding: SpacingValue;
+  backgroundColor?: string;
+}
+
 // Page/Slide
 export interface Page {
   id: string;
   name: string;
   layout: LayoutNode[];
+  settings?: PageSettings;
 }
 
 // Campaign (collection of pages)
