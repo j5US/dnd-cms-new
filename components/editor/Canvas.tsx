@@ -30,6 +30,25 @@ export function Canvas() {
         );
     }
 
+    // Helper to get spacing value
+    const getSpacing = (val: any, side: string): string => {
+        if (typeof val === 'string') return val;
+        if (typeof val === 'object' && val) return val[side] || val.all || '0px';
+        return '0px';
+    };
+
+    // Get page settings with defaults
+    const pageSettings = activePage.settings || {
+        padding: { all: '16px', top: '16px', right: '16px', bottom: '16px', left: '16px' },
+    };
+
+    const canvasStyle: React.CSSProperties = {
+        paddingTop: getSpacing(pageSettings.padding, 'top'),
+        paddingRight: getSpacing(pageSettings.padding, 'right'),
+        paddingBottom: getSpacing(pageSettings.padding, 'bottom'),
+        paddingLeft: getSpacing(pageSettings.padding, 'left'),
+    };
+
     return (
         <div className="flex-1 flex items-start justify-center bg-gray-100 p-8 overflow-y-auto">
             {/* Mobile Canvas Container */}
@@ -37,9 +56,10 @@ export function Canvas() {
                 ref={setNodeRef}
                 className={cn(
                     'w-full max-w-md bg-white rounded-lg shadow-xl',
-                    'min-h-[600px] p-4 space-y-4',
+                    'min-h-[600px] space-y-4',
                     isOver && 'ring-4 ring-blue-400'
                 )}
+                style={canvasStyle}
             >
                 {activePage.layout.length === 0 ? (
                     <div className="flex items-center justify-center h-full text-center p-8">

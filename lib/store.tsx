@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
-import { Campaign, Page, LayoutNode, ComponentType, Selection } from './types';
+import { Campaign, Page, LayoutNode, ComponentType, Selection, PageSettings } from './types';
 import { componentRegistry } from './registry';
 
 interface CampaignState {
@@ -18,6 +18,7 @@ type CampaignAction =
   | { type: 'DELETE_COMPONENT'; nodeId: string }
   | { type: 'MOVE_COMPONENT'; nodeId: string; newParentId?: string; newIndex: number }
   | { type: 'SELECT_NODE'; nodeId: string | null; componentType?: ComponentType }
+  | { type: 'UPDATE_PAGE_SETTINGS'; settings: Partial<PageSettings> }
   | { type: 'LOAD_CAMPAIGN'; campaign: Campaign };
 
 function generateId(prefix: string): string {
@@ -67,6 +68,9 @@ const initialState: CampaignState = {
         id: 'page-1',
         name: 'Page 1',
         layout: [],
+        settings: {
+          padding: { all: '16px', top: '16px', right: '16px', bottom: '16px', left: '16px' },
+        },
       },
     ],
     activePageId: 'page-1',
@@ -234,6 +238,31 @@ function campaignReducer(state: CampaignState, action: CampaignAction): Campaign
         ...state,
         campaign: action.campaign,
         selectedNode: null,
+      };
+    }
+
+    case 'UPDATE_PAGE_SETTINGS': {
+      const activePage = state.campaign.pages.find((p) => p.id === state.campaign.activePageId);
+      if (!activePage) return state;
+
+      const defaultSettings: PageSettings = {
+        padding: { all: '16px', top: '16px', right: '16px', bottom: '16px', left: '16px' },
+      };
+
+      const updatedSettings = {
+        ...defaultSettings,
+        ...activePage.settings,
+        ...action.settings,
+      };
+
+      return {
+        ...state,
+        campaign: {
+          ...state.campaign,
+          pages: state.campaign.pages.map((p) =>
+            p.id === activePage.id ? { ...p, settings: updatedSettings } : p
+          ),
+        },
       };
     }
 
