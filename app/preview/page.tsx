@@ -72,7 +72,7 @@ function PreviewContent({
     const generatedCode = generateActivePageCode(campaign, currentPage.id);
 
     // Component type to file path mapping
-    const componentToFilePath: Record<ComponentType, string> = {
+    const componentToFilePath: Partial<Record<ComponentType, string>> = {
         'flex-block': 'components/building-blocks/FlexBlock.tsx',
         'grid-block': 'components/building-blocks/GridBlock.tsx',
         'card-block': 'components/building-blocks/CardBlock.tsx',
