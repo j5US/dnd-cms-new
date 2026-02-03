@@ -186,12 +186,25 @@ export function Toolbar() {
         window.open('/preview', '_blank');
     };
 
+    const handlePageSettings = () => {
+        dispatch({ type: 'SELECT_NODE', nodeId: null });
+    };
+
     return (
         <div className="h-14 border-b bg-white px-4 flex items-center justify-between shadow-sm">
             <div className="flex items-center gap-3">
                 <h1 className="text-sm font-semibold text-gray-700">
                     {campaignName || 'Untitled Campaign'}
                 </h1>
+                <Button
+                    onClick={handlePageSettings}
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-500 hover:text-gray-700"
+                    title="Edit page background and padding"
+                >
+                    ⚙️ Page Settings
+                </Button>
             </div>
 
             <div className="flex items-center gap-2">

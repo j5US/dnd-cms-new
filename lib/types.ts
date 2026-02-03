@@ -60,6 +60,7 @@ export interface SpacingValue {
 export interface PageSettings {
   padding: SpacingValue;
   backgroundColor?: string;
+  backgroundImage?: string;
 }
 
 // Page/Slide
