@@ -9,6 +9,7 @@ export const buildingBlocks: Record<string, ComponentDefinition> = {
         acceptsChildren: true,
         defaultProps: {
             direction: 'column',
+            wrap: 'nowrap',
             align: 'center',
             justify: 'start',
             gap: 4,
@@ -23,6 +24,13 @@ export const buildingBlocks: Record<string, ComponentDefinition> = {
                 type: 'select',
                 options: ['row', 'column'],
                 defaultValue: 'column',
+            },
+            {
+                key: 'wrap',
+                label: 'Wrap',
+                type: 'select',
+                options: ['nowrap', 'wrap', 'wrap-reverse'],
+                defaultValue: 'nowrap',
             },
             {
                 key: 'align',
@@ -129,10 +137,33 @@ export const buildingBlocks: Record<string, ComponentDefinition> = {
             shadow: 'md',
             width: 'auto',
             height: 'auto',
+            direction: 'column',
+            wrap: 'nowrap',
+            gap: 4,
             justify: 'start',
             align: 'start',
         },
         propSchema: [
+            {
+                key: 'direction',
+                label: 'Direction',
+                type: 'select',
+                options: ['row', 'column'],
+                defaultValue: 'column',
+            },
+            {
+                key: 'wrap',
+                label: 'Wrap',
+                type: 'select',
+                options: ['nowrap', 'wrap', 'wrap-reverse'],
+                defaultValue: 'nowrap',
+            },
+            {
+                key: 'gap',
+                label: 'Gap',
+                type: 'number',
+                defaultValue: 4,
+            },
             {
                 key: 'padding',
                 label: 'Padding',

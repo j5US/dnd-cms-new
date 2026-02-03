@@ -47,6 +47,12 @@ export function Canvas() {
         paddingRight: getSpacing(pageSettings.padding, 'right'),
         paddingBottom: getSpacing(pageSettings.padding, 'bottom'),
         paddingLeft: getSpacing(pageSettings.padding, 'left'),
+        backgroundColor: pageSettings.backgroundColor || '#ffffff',
+        ...(pageSettings.backgroundImage && {
+            backgroundImage: `url(${pageSettings.backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }),
     };
 
     return (
@@ -55,7 +61,7 @@ export function Canvas() {
             <div
                 ref={setNodeRef}
                 className={cn(
-                    'w-full max-w-md bg-white rounded-lg shadow-xl',
+                    'w-full max-w-md rounded-lg shadow-xl',
                     'min-h-[600px] space-y-4',
                     isOver && 'ring-4 ring-blue-400'
                 )}

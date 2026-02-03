@@ -203,10 +203,17 @@ function PreviewContent({
                             paddingRight: getSpacing(pageSettings.padding, 'right'),
                             paddingBottom: getSpacing(pageSettings.padding, 'bottom'),
                             paddingLeft: getSpacing(pageSettings.padding, 'left'),
+                            backgroundColor: pageSettings.backgroundColor || '#ffffff',
+                            minHeight: '100vh',
+                            ...(pageSettings.backgroundImage && {
+                                backgroundImage: `url(${pageSettings.backgroundImage})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                            }),
                         };
 
                         return (
-                            <div className="w-full max-w-md min-h-screen bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div className="w-full max-w-md min-h-screen rounded-lg shadow-lg overflow-hidden">
                                 <div style={canvasStyle}>
                                     {currentPage && currentPage.layout && currentPage.layout.length > 0 ? (
                                         <LayoutRenderer nodes={currentPage.layout} isEditor={false} />

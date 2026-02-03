@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 
 interface FlexBlockProps {
     direction?: 'row' | 'column';
+    wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
     align?: 'start' | 'center' | 'end';
     justify?: 'start' | 'center' | 'end' | 'between';
     gap?: number;
@@ -20,6 +21,7 @@ interface FlexBlockProps {
 
 export function FlexBlock({
     direction = 'column',
+    wrap = 'nowrap',
     align = 'center',
     justify = 'start',
     gap = 4,
@@ -38,6 +40,7 @@ export function FlexBlock({
         },
     });
     const flexDirection = direction === 'row' ? 'flex-row' : 'flex-col';
+    const flexWrap = wrap === 'wrap' ? 'flex-wrap' : wrap === 'wrap-reverse' ? 'flex-wrap-reverse' : 'flex-nowrap';
 
     const alignItems =
         align === 'start'
@@ -87,6 +90,7 @@ export function FlexBlock({
             className={cn(
                 'flex',
                 flexDirection,
+                flexWrap,
                 alignItems,
                 justifyContent,
                 // Only show editor-specific styling when in editor mode

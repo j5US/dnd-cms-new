@@ -32,6 +32,14 @@ export function PropertiesPanel() {
         });
     };
 
+    // Handle string property changes (background color, image)
+    const handlePageStringChange = (key: keyof PageSettings, value: string) => {
+        dispatch({
+            type: 'UPDATE_PAGE_SETTINGS',
+            settings: { [key]: value },
+        });
+    };
+
     // Show Page Settings when no component is selected
     if (!state.selectedNode) {
         const pageSettings = activePage?.settings || defaultPageSettings;
@@ -45,7 +53,7 @@ export function PropertiesPanel() {
                         <strong>Canvas Layout</strong>
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                        Configure padding for the main canvas area
+                        Configure the main canvas area
                     </p>
                 </div>
 
@@ -54,6 +62,18 @@ export function PropertiesPanel() {
                         label="Padding"
                         values={pageSettings.padding}
                         onChange={(val) => handlePageSettingChange('padding', val)}
+                    />
+
+                    <ColorControl
+                        label="Background Color"
+                        value={pageSettings.backgroundColor || '#ffffff'}
+                        onChange={(val) => handlePageStringChange('backgroundColor', val)}
+                    />
+
+                    <TextControl
+                        label="Background Image URL"
+                        value={pageSettings.backgroundImage || ''}
+                        onChange={(val) => handlePageStringChange('backgroundImage', val)}
                     />
                 </div>
 

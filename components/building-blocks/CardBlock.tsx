@@ -14,6 +14,9 @@ interface CardBlockProps {
   shadow?: "none" | "sm" | "md" | "lg";
   width?: string | number;
   height?: string | number;
+  direction?: "row" | "column";
+  wrap?: "nowrap" | "wrap" | "wrap-reverse";
+  gap?: number;
   justify?: "start" | "center" | "end" | "between";
   align?: "start" | "center" | "end";
   children?: ReactNode;
@@ -32,6 +35,9 @@ export function CardBlock({
   shadow = "md",
   width = "auto",
   height = "auto",
+  direction = "column",
+  wrap = "nowrap",
+  gap = 4,
   justify = "start",
   align = "start",
   children,
@@ -42,7 +48,7 @@ export function CardBlock({
   const { setNodeRef, isOver } = useDroppable({
     id: nodeId || "card-block",
     data: {
-      accepts: "content",
+      accepts: ["content", "building-block"],
     },
   });
 
@@ -94,6 +100,7 @@ export function CardBlock({
     borderColor,
     borderWidth: `${borderWidth}px`,
     borderStyle: "solid",
+    gap: `${gap * 4}px`,
   };
 
   if (width !== "auto") {
@@ -103,11 +110,16 @@ export function CardBlock({
     cardStyle.height = `${height}px`;
   }
 
+  const directionClass = direction === "row" ? "flex-row" : "flex-col";
+  const wrapClass = wrap === "wrap" ? "flex-wrap" : wrap === "wrap-reverse" ? "flex-wrap-reverse" : "flex-nowrap";
+
   return (
     <div
       ref={setNodeRef}
       className={cn(
-        "flex flex-col",
+        "flex",
+        directionClass,
+        wrapClass,
         justifyClass,
         alignClass,
         shadowClass,
